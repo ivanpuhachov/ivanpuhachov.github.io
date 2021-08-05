@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>Ivan  Puhachov | Naive pointcoud visualization in Blender</title>
+<meta name="description" content="My personal webpage and log. Working on my PhD in CS at computer graphics lab. Process sketches and line drawings to make fine art. Research activities here - computer graphics, applied geometry, image processing.">
+
+<!-- Open Graph -->
+
+<meta property="og:site_name" content="ivan's work" />
+<meta property="og:type" content="object" />
+<meta property="og:title" content="Naive pointcoud visualization in Blender" />
+<meta property="og:url" content="https://puhachov.xyz/blog/2021/blender-pointcloud/" />
+<meta property="og:description" content="Piece of code to load a pointcloud data in Blender" />
+<meta property="og:image" content="https://puhachov.xyz/assets/img/prof_pic.jpg" />
+
+
+<!-- Bootstrap & MDB -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-MoRNloxbStBcD8z3M/2BmnT+rg4IsMxPkXaGh2zD6LGNNFE80W3onsAhRcMAMrSoyWL9xD7Ert0men7vR8LUZg==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" integrity="sha512-RO38pBRxYH3SoOprtPTD86JFOclM51/XTIdEPh5j8sj4tp8jmQIx26twG52UaLi//hQldfrh7e51WzP9wuP32Q==" crossorigin="anonymous" />
+
+<!-- Fonts & Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"  integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
+
+<!-- Code Syntax Highlighting -->
+<link rel="stylesheet" href="https://gitcdn.xyz/repo/jwarby/jekyll-pygments-themes/master/github.css" />
+
+<!-- Styles -->
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍿</text></svg>">
+
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="/blog/2021/blender-pointcloud/">
+
+<!-- JQuery -->
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+
+<!-- Theming-->
+
+<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/dark_mode.js"></script>
+
+
+
+
+
+
+    
+<!-- MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex: {
+      tags: 'ams'
+    }
+  };
+</script>
+<script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js"></script>
+<script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+
+  </head>
+
+  <body class="fixed-top-nav sticky-bottom-footer">
+
+    <!-- Header -->
+
+    <header>
+
+    <!-- Nav Bar -->
+    <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+    <div class="container">
+      
+      <a class="navbar-brand title font-weight-lighter" href="/">
+       <span class="font-weight-bold">Ivan</span>   Puhachov
+      </a>
+      
+      <!-- Navbar Toggle -->
+      <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap">
+          <!-- About -->
+          <li class="nav-item ">
+            <a class="nav-link" href="/">
+              about
+              
+            </a>
+          </li>
+          
+          <!-- Blog -->
+          <li class="nav-item active">
+            <a class="nav-link" href="/blog/">
+              blog
+              
+            </a>
+          </li>
+          
+          <!-- Other pages -->
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/projects/">
+                projects
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+            <div class = "toggle-container">
+              <a id = "light-toggle">
+                  <i class="fas fa-moon"></i>
+                  <i class="fas fa-sun"></i>
+              </a>
+            </div>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+    <!-- Content -->
+
+    <div class="container mt-5">
+      
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Naive pointcoud visualization in Blender</h1>
+    <p class="post-meta">July 21, 2021</p>
+  </header>
+
+  <article class="post-content">
+    <p>There is a point cloud vidualizer for Blender - <a href="https://github.com/uhlik/bpy">uhlik/bpy</a>. You can follow along with this short youtube tutorial.</p>
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/eXct_7k779Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<p>However, I received errors when tring to render the pointcloud in Blender-2.91. Apparently, only paid version from blendermarket <a href="https://github.com/uhlik/bpy/issues/47">is supported</a>.</p>
+
+<hr />
+<h2 id="roundabout">Roundabout</h2>
+
+<p>Dirty way to render a pointcloud - use a Python script to place spheres. Simply run a script (<code class="language-plaintext highlighter-rouge">Shift-F11</code>), then the spheres can be rendered as usual.</p>
+
+<p><img src="/assets/img/bunnypoints.png" alt="" /></p>
+
+<blockquote>
+  <p>Warning: it is slow. Let me know what goes wrong here and how to improve it.</p>
+</blockquote>
+
+<h3 id="code">Code</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">bpy</span>
+<span class="kn">import</span> <span class="nn">bmesh</span>
+<span class="kn">import</span> <span class="nn">mathutils</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">mymesh</span> <span class="o">=</span> <span class="n">bpy</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">meshes</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="s">'PointCloud'</span><span class="p">)</span>
+<span class="n">myobj</span>  <span class="o">=</span> <span class="n">bpy</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="s">'PointCloud'</span><span class="p">,</span> <span class="n">mymesh</span><span class="p">)</span>
+<span class="n">bpy</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">collection</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="n">link</span><span class="p">(</span><span class="n">myobj</span><span class="p">)</span>
+<span class="n">bpy</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">view_layer</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="n">active</span> <span class="o">=</span> <span class="n">myobj</span>
+
+<span class="n">filepath</span> <span class="o">=</span> <span class="s">"/folder/bunny_pointcloud.txt"</span> <span class="c1"># path to your data file. 
+</span><span class="n">scale</span> <span class="o">=</span> <span class="mi">25</span> <span class="c1"># scaling the point cloud
+</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="n">bm</span> <span class="o">=</span> <span class="n">bmesh</span><span class="p">.</span><span class="n">new</span><span class="p">()</span>
+
+<span class="c1"># this cycle will take time, progress is reported in the console
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="n">point</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">,:</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">mat</span> <span class="o">=</span> <span class="n">mathutils</span><span class="p">.</span><span class="n">Matrix</span><span class="p">.</span><span class="n">Translation</span><span class="p">(</span><span class="n">point</span><span class="o">*</span><span class="n">scale</span><span class="p">)</span> <span class="c1"># setting the translation matrix
+</span>    <span class="c1"># creating a sphere in the origin, moving it by translation matrix
+</span>    <span class="n">mesh</span> <span class="o">=</span> <span class="n">bmesh</span><span class="p">.</span><span class="n">ops</span><span class="p">.</span><span class="n">create_uvsphere</span><span class="p">(</span><span class="n">bm</span><span class="p">,</span> <span class="n">u_segments</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">v_segments</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+                    <span class="n">diameter</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">matrix</span><span class="o">=</span><span class="n">mat</span> <span class="p">)</span> 
+    <span class="c1"># progress console output
+</span>    <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"point </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s"> of </span><span class="si">{</span><span class="n">data</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="si">}</span><span class="s">"</span>
+    <span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">msg</span> <span class="o">+</span> <span class="nb">chr</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
+    <span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">flush</span><span class="p">()</span>
+
+<span class="n">bm</span><span class="p">.</span><span class="n">to_mesh</span><span class="p">(</span><span class="n">mymesh</span><span class="p">)</span>
+<span class="n">bm</span><span class="p">.</span><span class="n">free</span><span class="p">()</span>
+
+<span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">"DONE"</span> <span class="o">+</span> <span class="s">" "</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span><span class="o">+</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+<span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">flush</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h3 id="input">Input</h3>
+<p>Input is similar to the usual <code class="language-plaintext highlighter-rouge">ply</code> or <code class="language-plaintext highlighter-rouge">obj</code> format, except that we only leave vertices locations. For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-0.0369122 0.127512 0.00276757 0.850855 0.5 
+-0.0457707 0.130327 0.00306785 0.900159 0.5 
+-0.0708847 0.149834 0.0388672 0.398443 0.5 
+-0.00331557 0.130403 0.0212208 0.85268 0.5 
+...
+
+</code></pre></div></div>
+
+  </article>
+
+  
+
+</div>
+
+    </div>
+
+    <!-- Footer -->
+
+    
+<footer class="sticky-bottom mt-5">
+  <div class="container">
+    &copy; Copyright 2021 Ivan  Puhachov.
+    Powered by <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
+    
+    
+  </div>
+</footer>
+
+
+
+  </body>
+
+  <!-- Bootsrap & MDB scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/umd/popper.min.js" integrity="sha512-eUQ9hGdLjBjY3F41CScH3UX+4JDSI9zXeroz7hJ+RteoCaY+GP/LDoM8AO+Pt+DRFw3nXqsjh9Zsts8hnYv8/A==" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha512-M5KW3ztuIICmVIhjSqXe01oV2bpe248gOxqmlcYrEzAvws7Pw3z6BK0iGbrwvdrUQUhi3eXgtxp5I8PDo9YfjQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js" integrity="sha512-Mug9KHKmroQFMLm93zGrjhibM2z2Obg9l6qFG2qKjXEXkMp/VDkI4uju9m4QKPjWSwQ6O2qzZEnJDEeCw0Blcw==" crossorigin="anonymous"></script>
+
+  
+<!-- Mansory & imagesLoaded -->
+<script defer src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script defer src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script defer src="/assets/js/mansory.js" type="text/javascript"></script>
+
+
+  
+
+
+<!-- Medium Zoom JS -->
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/assets/js/zoom.js"></script>
+
+
+<!-- Load Common JS -->
+<script src="/assets/js/common.js"></script>
+
+
+</html>
