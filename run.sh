@@ -1,4 +1,4 @@
 #!/bin/bash
 
-#bundle install
-bundle exec jekyll serve
+bundle install
+bundle exec jekyll serve --trace
