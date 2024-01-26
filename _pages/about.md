@@ -7,15 +7,16 @@ description: PhD student, UdeM, LIGUM
 profile:
   align: right
   image: prof_pic.jpg
-  image_cicular: false # crops the image to make it circular
-  address: >
-    <p>name.surname</p>
-    <p>@</p>
-    <p>umontreal.ca</p>
+  image_circular: false # crops the image to make it circular
+  more_info: >
+    <p>555 your office number</p>
+    <p>123 your address street</p>
+    <p>Your City, State 12345</p>
 
-news: true  # includes a list of news items
-selected_papers: false # includes a list of papers marked as "selected={true}"
-social: false  # includes social icons at the bottom of the page
+news: true # includes a list of news items
+latest_posts: true # includes a list of the newest posts
+selected_papers: true # includes a list of papers marked as "selected={true}"
+social: true # includes social icons at the bottom of the page
 ---
 > ✈️🌊🏄‍♂️ **See you at SIGGRAPH Asia in Sydney!** ✈️🌊🏄‍♂️
 > 
