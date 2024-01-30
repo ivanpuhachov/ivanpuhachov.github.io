@@ -2,9 +2,9 @@
 layout: page
 title: FoieGraph 2022
 description: Volunteered at FoieGraph 2022 (website dev, discord admin)
-img: /assets/img/FoieGraph_logo_notext.svg
+img: /assets/img/FoieGraph_logo_notext.png
 redirect: https://foiegraph2022.github.io
-importance: 1
+importance: 3
 category: activities
 ---
 
