@@ -4,7 +4,7 @@ title: IFT 6113 – Promo Video
 description: Short video for IFT 6113 "Geometric Modeling and Shape Analysis"
 img: /assets/img/blender/fall0117.png
 importance: 2
-category: activities
+category: blender
 ---
 
 [Course webpage](https://tiny.cc/ift6113)
