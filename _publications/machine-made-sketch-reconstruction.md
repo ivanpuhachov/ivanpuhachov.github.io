@@ -60,7 +60,7 @@ $$^3$$ Huawei Technologies, Canada
         <div class="bbb">
             <i class="fab fa-github"></i>
             <!-- <a href=""> Code (email me) </a> -->
-            Code (TBD)
+            <a href="https://github.com/ivanpuhachov/machine-made-sketch-reconstruction"> Code </a> 
         </div>
     </div>
 </div>
