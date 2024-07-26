@@ -62,7 +62,7 @@
 \newcommand{\resumeSubheading}[4]{
 	\vspace{-1pt}\item
 	\begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
-		\textbf{#1} & #2 \\
+		#1 & #2 \\
 		#3 & #4 \\
 	\end{tabular*}\vspace{-5pt}
 }
@@ -71,6 +71,16 @@
 	\vspace{-1pt}\item
 	\begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
 		#1 & {#2} \\ 
+		#3 & #4 \\
+	\end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\experienceSmallheading}[4]{
+	\vspace{-3pt}
+	\item
+	% \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+	\begin{tabular*}{0.97\textwidth}[t]{@{}p{0.75\textwidth}@{\extracolsep{\fill}}r@{}}
+		#1 & #2\\ 
 		#3 & #4 \\
 	\end{tabular*}\vspace{-5pt}
 }
@@ -85,25 +95,64 @@
 	\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
 
 %-----------------------------
-%%%%%%  CV STARTS HERE  %%%%%%
+%%%%%  CV STARTS HERE  %%%%%%
 
 \begin{document}
 	
 	%----------HEADING-----------------
 	\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
 		\textbf{{\LARGE Ivan Puhachov}} & Email: \href{mailto:}{ivan.puhachov@gmail.com}\\
-		Website:~\href{https://puhachov.xyz/}{\texttt{[puhachov.xyz]}} & Mobile: +1-514-XXXX-XXX \\
-		Github:~~\href{https://github.com/ivanpuhachov/}{\texttt{[github.com/ivanpuhachov]}} & Last updated: November 2022\\
+		Website:~\href{https://puhachov.xyz/}{\texttt{[puhachov.xyz]}} & Mobile: +1-514-6600-344 \\
+		Github:~~\href{https://github.com/ivanpuhachov/}{\texttt{[github.com/ivanpuhachov]}} & Last updated: June 2024\\
 	\end{tabular*}
 
-\vspace{5pt}
+	\vspace{3pt}
+	\section{Publications \& Projects}
+	\resumeSubHeadingListStart
+
+	\vspace{4pt}
+	\resumeSubheading
+	{Generative 2D Graphics with Diffusion}
+	{TBA}
+	{
+		\begin{tabular}[t]{l}
+			\underline{Ivan Puhachov}, Thibault Groueix, Noam Aigerman, Mikhail Bessmeltsev \\
+			\textbf{TLDR}: Using Diffusion to generate expressive geometry-driven animation.  \\
+			Work in progress.\\
+		\end{tabular}
+	}
+	{\href{https://puhachov.xyz/}{\texttt{[TBA]}}
+	}
 	
-	I am a PhD-student working on geometry processing and machine learning applications to process natural drawings. 
+	\vspace{4pt}
+	\resumeSubheading
+	{Neural Implicit Reduced Fluid Simulation}
+	{Under Review}
+	{
+		\begin{tabular}[t]{l}
+			Yuanyuan Tao, \underline{Ivan Puhachov}, Derek Nowrouzezahrai, Paul Kry \\
+			\textbf{TLDR}: Fluid simulation using latent space of implicit geometric model.\\
+			Under review.\\
+		\end{tabular}
+	}
+	{\href{https://puhachov.xyz/}{\texttt{[TBA]}}
+	}
 
 	\vspace{5pt}
-	\section{Publications}
-	\resumeSubHeadingListStart
-	\vspace{5pt}
+	\resumeSubheading
+	{Reconstruction of Machine-Made Shapes from Bitmap Sketches}
+	{SIGGRAPH Asia 2023}
+	{
+		\begin{tabular}[t]{l}
+			\underline{Ivan Puhachov}, Cedric Martens, Paul G. Kry, Mikhail Bessmeltsev \\
+			\textbf{TLDR}: 3D shape reconstruction from natural sketch by patch-based optimization\\
+			Extracting geometric primitives with ML then aligning them to the drawing.\\
+		\end{tabular}
+		
+	}
+	{\href{https://puhachov.xyz/publications/machine-made-sketch-reconstruction/}{\texttt{[project page]}}\href{}{\texttt{[tbd]}}}
+	
+	\vspace{4pt}
 	
 	\resumeSubheading
 	{Stability-Aware Simplification of Curve Networks}
@@ -116,7 +165,9 @@
 		\end{tabular}
 		
 	}
-	{\href{http://www-labs.iro.umontreal.ca/~bmpix/curve_networks/}{\texttt{[project page]}}\href{https://dl.acm.org/doi/10.1145/3528233.3530711}{\texttt{[acm]}}}
+	{
+	\href{http://www-labs.iro.umontreal.ca/~bmpix/curve_networks/}{\texttt{[project page]}}\href{https://dl.acm.org/doi/10.1145/3528233.3530711}{\texttt{[acm]}}
+	}
 	
 	\vspace{4pt}
 	\resumeSubheading
@@ -126,7 +177,7 @@
 		\begin{tabular}[t]{l}
 			\underline{Ivan Puhachov}, William Neveu, Edward Chien, Mikhail Bessmeltsev \\
 			\textbf{TLDR}: novel PolyVector flow aligns curve to a smooth cross-field over bitmap image. \\
-			Combined with ML detection to vectorize drawings.\\
+			ML keypoint detection and optimization to extract vector curves from raster data.\\
 		\end{tabular}
 	}
 	{\href{https://puhachov.xyz/publications/keypoint-driven-polyvector-flow/}{\texttt{[project page]}}
@@ -136,47 +187,52 @@
 	
 	%-----------EXPERIENCE-----------------
 	
-	\vspace{1pt}
+	\vspace{0pt}
 	\section{Experience}
 	\resumeSubHeadingListStart
-	
-	\resumeSubheading{Research Engineering Intern}{Montreal, Canada}
-	{Quantum Technology Recruiting Inc. on assignment with Huawei Canada}{Oct 2021 - Present}
-	\resumeItemListStart
-	\resumeItem
-	{TBD}
-	{Research project to submit: 3D shape reconstruction from a single raster sketch. \\ In collaboration with \href{http://www-labs.iro.umontreal.ca/~bmpix/}{Mikhail Bessmeltsev} and \href{https://www.cs.mcgill.ca/~kry/}{Paul Kry}}
-	\resumeSubHeadingListEnd
-	
-	%\vspace{-5pt}
-	\vspace{2pt}
-	
-	\resumeSubheading
-	{Machine Learning Research Intern}{Kharkiv, Ukraine}
-	{\href{https://mobidev.biz/}{MobiDev}}{Feb 2019 -  Aug 2019}
-	\resumeItemListStart
-	\resumeItem{Bio-verification system}
-	{Image quality assesment system; fine-tuning face verification system}
-	\resumeItem{Object detection and tracking}
-	{PoC for multiple object tracking}
-	\resumeItem{Sales forecast}{Time-series analysis}
-	\resumeItemListEnd
+	\vspace{1mm}
+	\experienceSmallheading
+	{\textbf{Research Engineering Intern} at Huawei, Canada}
+	{Montreal, Canada}
+	{
+		\vspace{-2mm}
+		\begin{itemize}[leftmargin=*, topsep=0pt, partopsep=0pt, itemsep=0pt, parsep=0pt]
+            \item First-author publication in SIGGRAPH Asia 2023
+			\item Participated in fluid simulation project [under review]
+			\item Developed product demo for mesh deformation, skinning and rigging, machine learning shape deformation.
+        \end{itemize}
+		\vspace{-2mm}
+	}
+	{Oct 2021 - Feb 2024}
+
+	\experienceSmallheading
+	{\textbf{Machine Learning Research Intern} at \href{https://mobidev.biz/}{MobiDev}}
+	{Kharkiv, Ukraine}
+	{Computer Vision user verification; fine-tuning verification system; QA pipeline}
+	{Feb 2019 -  Aug 2019}
 	
 	\resumeSubHeadingListEnd
 	
 	%-----------EDUCATION-----------------
+	\vspace{3pt}
 	\section{Skills Summary}
-	\vspace{2pt}
-	\textbf{Languages: }{\texttt{Python, C++, bash, Matlab}}
+	\textbf{Programming Languages: }{\texttt{Python, C++, bash}}
 	
 	\vspace{1pt}
 	
-	\textbf{Frameworks: }{\texttt{PyTorch, NumPy, SciPy, CGAL, libigl, Eigen}}
+	\textbf{Frameworks: }{\texttt{PyTorch, JAX, NumPy, SciPy, CGAL, libigl, Eigen, pyomo, Ipopt,}}
 	
 	\vspace{1pt}
 	
-	\textbf{Tools: }{\texttt{Blender, git, Ubuntu, Blender scripting, Adobe Illustrator scripting}}
+	\textbf{Tools: }{\texttt{git, docker, Blender, Blender scripting, Adobe Illustrator scripting}}
 	
+	\vspace{1pt}
+	
+	\textbf{Geometry and Graphics: }{differential geometry; shape analysis; mesh optimization; deformation and animation; vector fields; optimization algorithms}
+	
+	\vspace{1pt}
+	
+	\textbf{Machine Learning: }{data processing; clustering; computer vision – detection, classification, segmentation; feature extraction and fine-tuning; generative models – GAN, VAE; neural implicit models – deepSDF, NeRF;}
 	
 	%-----------EDUCATION-----------------
 	\vspace{5pt}
@@ -205,25 +261,24 @@
 	\vspace{-5pt}
 	\section{Activities}
 	\resumeSubHeadingListStart
-	\resumeSmallheading{\textbf{Volunteer, FoieGraph 2022} \textit{Annual Ontario-Quebec-Maritimes pre-SIGGRAPH Workshop}} {Fall 2022}  {Website dev, discord admin, presenter }{\href{https://foiegraph2022.github.io/}{\texttt{[website]}}}
-	\vspace{2pt}
 	\resumeSmallheading{\textbf{Teaching Assistant, IFT 6113} \textit{"Geometric Modeling and Shape Analysis"}} {Fall 2022, 2021, 2020}  {Homework code templates, assessment, face-to-face evaluation, tech support, forum moderation}{\href{http://www-labs.iro.umontreal.ca/~bmpix/teaching/6113/2022/}{\texttt{[course page]}}}
 	\vspace{2pt}
-	\resumeSmallheading{\textbf{Project IFT 6756} \textit{"Game Theory and Machine Learning"}} {Spring 2021}  {Trained a GAN models to generate vector images, short comparison with regular raster GANs}{\href{https://puhachov.xyz/projects/vector_gan/}{\texttt{[project page]}}}
+	\resumeSmallheading{\textbf{Project IFT 6756} \textit{"Game Theory and Machine Learning"}} {Spring 2021}  {Trained generative models (GAN, WGAN, SNGAN) for vector images}{\href{https://puhachov.xyz/projects/vector_gan/}{\texttt{[project page]}}}
 	\vspace{2pt}
-	\resumeSmallheading{\textbf{Project IFT 6010} \textit{"Modern Natural Language Processing"}} {Spring 2021}  {Recurrent Neural Network with attention to generate simple drawings}{\href{https://puhachov.xyz/projects/sketchrnn_attention/}{\texttt{[project page]}}}
+	\resumeSmallheading{\textbf{Project IFT 6010} \textit{"Modern Natural Language Processing"}} {Spring 2021}  {RNN with Attention to generate vector drawings}{\href{https://puhachov.xyz/projects/sketchrnn_attention/}{\texttt{[project page]}}}
+	\vspace{2pt}
+	\resumeSmallheading{\textbf{Project IFT 6113} \textit{Geometric Modeling and Shape Analysis}} {Fall 2019}  {2D shape analysis; discrete geometry and PDE solver; functional mapping}{\href{https://foiegraph2022.github.io/}{\texttt{[website]}}}
 	\vspace{2pt}
 	\resumeSubHeadingListEnd
 	
 	\vspace{-5pt}
 	%-----------Awards-----------------
-	\section{Honors and Awards}
-	\begin{description}[font=$\bullet$]
-		\item {PhD Excellence Scholarship, DIRO, Ud\'eM -- April 2021}
-		\vspace{-5pt}
-		\item {PhD Excellence Scholarship, DIRO, Ud\'eM -- April 2020}
-		
-	\end{description}
+%	\section{Honors and Awards}
+%	\begin{description}[font=$\bullet$]
+%		\item {PhD Excellence Scholarship, DIRO, Ud\'eM -- April 2021}
+%		\vspace{-5pt}
+%		\item {PhD Excellence Scholarship, DIRO, Ud\'eM -- April 2020}		
+%	\end{description}
 
 	
 \end{document}
